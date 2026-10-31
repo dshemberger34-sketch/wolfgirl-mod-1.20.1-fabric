@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "wolfgirl",
+  "version": "${version}",
+  "name": "Wolf Girl",
+  "description": "Adds a tameable Wolf Girl mob with a custom Blockbench model and walk animation.",
+  "authors": ["клайфер"],
+  "license": "MIT",
+  "icon": "assets/wolfgirl/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.wolfgirl.WolfGirlMod"],
+    "client": ["com.wolfgirl.client.WolfGirlClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
