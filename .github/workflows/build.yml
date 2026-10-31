@@ -29,7 +29,18 @@ jobs:
 
       - name: Build
         working-directory: wolfgirl-mod-1.20.1-fabric-src
-        run: gradle build --no-daemon
+        run: gradle build --no-daemon --stacktrace 2>&1 | tee build.log; exit ${PIPESTATUS[0]}
+
+      - name: Publish build log on failure
+        if: failure()
+        run: |
+          mkdir -p build-output
+          cp wolfgirl-mod-1.20.1-fabric-src/build.log build-output/build.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f build-output/build.log
+          git commit -m "ci: build failed, log for ${GITHUB_SHA} [skip ci]" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}" || true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
