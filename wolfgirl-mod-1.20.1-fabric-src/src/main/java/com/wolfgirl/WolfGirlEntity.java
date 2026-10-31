@@ -31,6 +31,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 
 /**
@@ -115,6 +116,15 @@ public class WolfGirlEntity extends TameableEntity {
         }
 
         return super.interactMob(player, hand);
+    }
+
+    /**
+     * Tameable#method_48926 (unnamed in Yarn 1.20.1): the entity view used by the
+     * default {@code Tameable#getOwner()} to look up the owner. Returns the entity's world.
+     */
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
     }
 
     @Override
